@@ -1,0 +1,25 @@
+{
+  "members": [
+    {
+      "id": "584a2fff-3489-400e-8382-1f0358cc840",
+      "email": "homer@simpson.com",
+      "password": "secret",
+      "name": "Homer Simpson",
+      "address": "Springfield, Mass",
+      "gender": "Male",
+      "height": "1.7",
+      "startingweight": "101",
+    },
+    {
+      "id": "fb3254bf-65dd-4a35-b7bf-6686b3482fce",
+      "email": "bart@simpson.com",
+      "name": "Bart Simpson",
+      "password": "secret",
+      "address": "Springfield, Mass",
+      "gender": "Male",
+      "height": "1.2",
+      "startingweight": "67",
+      "assessments": []
+    }
+  ]
+}

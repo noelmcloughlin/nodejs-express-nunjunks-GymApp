@@ -1,0 +1,16 @@
+{%- include "layouts/main.html" %}
+
+{%- from "macros/analytics-ui.njk" import analytics with context %}
+{%- from "macros/assessment-ui.njk" import assessment-table with context %}
+{%- from "macros/assessment-ui.njk" import assessment-row with context %}
+
+<div class="pusher">
+  <div class="ui inverted vertical masthead center aligned segment">
+    {%- include "partials/trainermenu.njk" %}
+
+    {{ analytics(member, memberStats) }}    //macro
+    <section class="ui segment">
+      {{ assessment-table(assessments, member, true) }}   //macro
+    </section>
+  </div>
+</div>

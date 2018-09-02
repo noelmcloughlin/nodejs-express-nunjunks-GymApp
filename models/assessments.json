@@ -1,0 +1,28 @@
+{
+  "assessments": [
+       {
+        "weight": 123.3,
+        "chest": 45,
+        "thigh": 12.5,
+        "upperarm": 23.3,
+        "waist": 32,
+        "hips": 38,
+        "trend": true,
+        "date": "2017-03-10T08:31:00.000Z",
+        "id": "d5491edb-8964-444e-b0bd-65b41ea3f66c",
+         "memberid": "584a2fff-3489-400e-8382-1f0358cc840"
+       },
+      {
+        "weight": 123.3,
+        "chest": 45,
+        "thigh": 12.5,
+        "upperarm": 23.3,
+        "waist": 32,
+        "hips": 38,
+        "trend": true,
+        "date": "2017-03-10T08:31:00.000Z",
+        "id": "95e94eb6-733b-46a6-a050-d2d909709284",
+        "memberid": "584a2fff-3489-400e-8382-1f0358cc840"
+      }
+  ]
+}

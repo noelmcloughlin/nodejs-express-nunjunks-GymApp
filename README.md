@@ -1,2 +1,4 @@
-# nodejs-nunjunks-GymApp
-WebApp prototyping - JavaScript, MVC, nunjunks, Nodejs, ExpressJS: https://mozilla.github.io/nunjucks/, http://expressjs.com/, &amp; https://semantic-ui.com/
+Welcome to the Gym NodeJs App
+==============================
+
+Gym application written in JavaScript, templates in Handlebars, and deployed on Node via ExpressJS.
