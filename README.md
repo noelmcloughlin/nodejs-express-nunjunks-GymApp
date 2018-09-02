@@ -1,4 +1,9 @@
-Welcome to the Gym NodeJs App
-==============================
+Welcome to the nodejs-nunjunks-GymApp
+======================================
 
-Gym application written in JavaScript, templates in Handlebars, and deployed on Node via ExpressJS.
+Gym application written in JavaScript, templates in NunJunks, and deployed on Node via ExpressJS.
+
+* JavaScript: https://www.javascript.com/
+* NunJunks: https://mozilla.github.io/nunjucks/
+* ExpressJS: http://expressjs.com/
+* Semantic-ui: https://semantic-ui.com/
