@@ -6,12 +6,13 @@ const about = {
     index(request, response) {
       const viewData = {
           title: 'About GymApp',
+          id: 'privacy',
         };
       response.render('about', viewData);
     },
 
     privacy(request, response) {
-      response.render('privacy', null);
+      response.render(viewData.id, viewData);
     },
   };
 

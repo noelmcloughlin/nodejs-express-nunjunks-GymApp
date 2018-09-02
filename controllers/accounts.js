@@ -11,7 +11,7 @@ const accounts = {
           title: 'Login or Signup',
           id: 'about',
         };
-      response.render('about', viewData);
+      response.render(viewData.id, viewData);
     },
 
     signup(request, response) {
@@ -19,7 +19,7 @@ const accounts = {
           title: 'Signup to the GymApp',
           id: 'signup',
         };
-      response.render('signup', viewData);
+      response.render(viewData.id, viewData);
     },
 
     login(request, response) {
@@ -27,7 +27,7 @@ const accounts = {
           title: 'Login to the GymApp',
           id: 'login',
         };
-      response.render('login', viewData);
+      response.render(viewData.id, viewData);
     },
 
     settings(request, response) {
@@ -36,18 +36,22 @@ const accounts = {
           title: 'Settings',
           id: 'settings',
         };
-      response.render('settings', viewData);
+      response.render(viewData.id, viewData);
     },
 
     updateSettings(request, response) {
       const user = request.body;
       members.update(user);
-      response.redirect('/settings');
+      const viewData = {
+          title: 'Settings',
+          id: 'settings',
+        };
+      response.render(viewData.id, viewData);
     },
 
     logout(request, response) {
       response.cookie('gymapp', '');
-      response.redirect('/');
+      this.index();
     },
 
     getLoggedInMember(request) {
