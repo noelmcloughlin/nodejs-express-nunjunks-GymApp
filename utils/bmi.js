@@ -1,5 +1,6 @@
 'use strict';
 
+// noinspection JSAnnotator
 /**
  * The category is determined by the magnitude of the members BMI according to the following:
  *
@@ -13,82 +14,37 @@
  *     BMI greater than 40   (inclusive)                      is "VERY SEVERELY OBESE"
  */
 
-//first index (inclusive) second index (exclusive)
 const bmi = {
-    VERY_SEVERELY_UNDERWEIGHT: {
-        lower: 0.0,
-        upper: 15.0,
-        description() {
+    bmiScale: Object.freeze({
+        VERY_SEVERELY_UNDERWEIGHT: '15.0',
+        SEVERELY_UNDERWEIGHT: '16.0',
+        UNDERWEIGHT: '18.5',
+        NORMAL: '25',
+        OVERWEIGHT: '30',
+        MODERATELY_OBESE: '35',
+        SEVERELY_OBESE: '40',
+        VERY_SEVERELY_OBESE: '1000', }),
+
+    bmiCategory(bmiValue)
+    {
+      if (bmiValue < Number(bmi.VERY_SEVERELY_UNDERWEIGHT))
           return 'Very Severely Underweight';
-        },
-      },
-
-    SEVERELY_UNDERWEIGHT: {
-        lower: 15.0,
-        upper: 16.0,
-        description() {
+      else if (bmiValue < Number(bmi.SEVERELY_UNDERWEIGHT))
           return 'Severely Underweight';
-        },
-      },
-
-    UNDERWEIGHT: {
-        lower: 16.0,
-        upper: 18.5,
-        description() {
+      else if (bmiValue < Number(bmi.UNDERWEIGHT))
           return 'Underweight';
-        },
-      },
-
-    NORMAL: {
-        lower: 18.5,
-        upper: 25.0,
-        description() {
+      else if (bmiValue < Number(bmi.NORMAL))
           return 'Normal';
-        },
-      },
-
-    OVERWEIGHT: {
-        lower: 25.0,
-        upper: 30.0,
-        description() {
-          return 'OverWeight';
-        },
-      },
-
-    MODERATELY_OBESE: {
-        lower: 30.0,
-        upper: 35.0,
-        description() {
+      else if (bmiValue < Number(bmi.OVERWEIGHT))
+          return 'Overweight';
+      else if (bmiValue < Number(bmi.MODERATELY_OBESE))
           return 'Moderately Obese';
-        },
-      },
-
-    SEVERELY_OBESE: {
-        lower: 35.0,
-        upper: 40.0,
-        description() {
+      else if (bmiValue < Number(bmi.SEVERELY_OBESE))
           return 'Severely Obese';
-        },
-      },
-
-    VERY_SEVERELY_OBESE: {
-        lower: 40.0,
-        upper: 1000.0,
-        description() {
+      else if (bmiValue < Number(bmi.VERY_SEVERELY_OBESE))
           return 'Very Severely Obese';
-        },
-      },
-
-    rangeLow: 0,
-    rangeHigh: 0,
-    set(low, high) {
-      this.rangeLow = low;
-      this.rangeHigh = high;
     },
 
-    bmiCategory(bmiValue) {
-      if ((bmiValue >= this.rangeLow) && (bmiValue < this.rangeHigh))
-        return true;
-      return false;
-    },
   };
+
+module.exports = bmi;

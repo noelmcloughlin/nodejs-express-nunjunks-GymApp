@@ -1,6 +1,5 @@
 
 'use strict';
-'use Math';
 
 const conversion = {
     round(numberToConvert, precision) {
@@ -16,3 +15,5 @@ const conversion = {
       return round(numberToConvert * 39.37, precision);
     },
   };
+
+module.exports = conversion;
