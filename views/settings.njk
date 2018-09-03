@@ -1,4 +1,4 @@
-{%- include "layouts/main.html" %}
+{% include "layouts/main.html" %}
 
 <div class="pusher">
     <div class="ui inverted vertical masthead center aligned segment">
@@ -6,45 +6,125 @@
 
         <div class="ui two column grid basic middle aligned segment">
           <div class="column">
-            <img class="ui image" src="/public/images/about.jpg">
+            <img class="ui image" src="/images/splash.png">
           </div>
           <div class="column">
             <form class="ui stacked segment form" action="/settings" method="POST">
-              <h3 class="ui header">Register</h3>
+              <h3 class="ui header">Settings</h3>
               <div class="two fields">
                 <div class="field">
                   <label>Name</label>
-                  <input placeholder="Name" type="text" name="member.name" value="{{ member.name }}>
+                  <input placeholder="Name" type="text" name="name" value="{{ user.name }}">
+                  <div class="ui pointing label">Check your name</div>
                 </div>
                 <div class="field">
                   <label>Gender</label>
-                  <input placeholder="Gender" type="text" name="member.gender" value="{{ member.gender }}>
+                  <input placeholder="Gender" type="text" name="gender" value="{{ user.gender }}">
+                  <div class="ui pointing label">Check your Gender (M or F)</div>
+                </div>
+              </div>
+              <div class="two fields">
+                <div class="field">
+                  <label>Email</label>
+                  <input placeholder="Email" type="text" name="email" value="{{ user.email }}">
+                  <div class="ui pointing label">Check your email address</div>
+                </div>
+                <div class="field">
+                  <label>Password</label>
+                  <input type="password" name="password" value="{{ user.password }}">
+                  <div class="ui pointing label">Consider changing your password</div>
                 </div>
               </div>
               <div class="field">
-                <label>Email</label>
-                <input placeholder="Email" type="text" name="member.email" value="{{ member.email }}>
-              </div>
-              <div class="field">
-                <label>Password</label>
-                <input type="password" name="member.password" value="{{ member.password }}>
-              </div>
-              <div class="field">
                 <label>Address</label>
-                <input type="text" name="member.address" value="{{ member.address }}>
+                <input type="text" name="address" value="{{ user.address }}">
+                <div class="ui pointing label">Change your address</div>
               </div>
               <div class="two fields">
                 <div class="field">
                   <label>Height</label>
-                  <input placeholder="Name" type="text" name="member.height" value="{{ member.height }}>
+                  <input placeholder="Name" type="text" name="height" value="{{ user.height }}">
+                  <div class="ui pointing label">Change your height</div>
                 </div>
                 <div class="field">
                   <label>Starting Weight</label>
-                  <input placeholder="Starting Weight" type="text" name="member.startingweight" value="{{ member.startingweight }}>
+                  <input placeholder="Starting Weight" type="text" name="startingweight" value="{{ user.startingweight }}">
+                </div>
+                <div>
+                  <input type="hidden" id="role" name="role" value="{{ user.role }}">
                 </div>
               </div>
-              <button class="ui blue submit button">Submit</button>
+              <button class="ui blue submit button">Update settings for {{ user.name }}</button>
             </form>
+            <script>
+                $('.ui.dropdown')
+                    .dropdown();
+
+                $('.ui.form')
+                    .form({
+                        fields: {
+                            name: {
+                                identifier: 'name',
+                                rules: [
+                                    {
+                                        type: 'empty',
+                                        prompt: 'Please check your name'
+                                    }
+                                ]
+                            },
+                            address: {
+                                identifier: 'address',
+                                rules: [
+                                    {
+                                        type: 'empty',
+                                        prompt: 'Please check your address'
+                                    }
+                                ]
+                            },
+                            email: {
+                                identifier: 'email',
+                                rules: [
+                                    {
+                                        type: 'empty',
+                                        prompt: 'Please check your email'
+                                    }
+                                ]
+                            },
+                            height: {
+                                identifier: 'height',
+                                rules: [
+                                    {
+                                        type: 'empty',
+                                        prompt: 'Please check your height (m)'
+                                    }
+                                ]
+                            },
+                            password: {
+                                identifier: 'password',
+                                rules: [
+                                    {
+                                        type: 'empty',
+                                        prompt: 'Please enter your password'
+                                    },
+                                    {
+                                        type: 'minLength[6]',
+                                        prompt: 'Your password must be at least {ruleValue} characters'
+                                    }
+                                ]
+                            },
+                            gender: {
+                                identifier: 'gender',
+                                rules: [
+                                    {
+                                        type: 'empty',
+                                        prompt: 'Please select your gender'
+                                    }
+                                ]
+                            },
+                        }
+                    })
+                ;
+            </script>
           </div>
         </div>
     </div>

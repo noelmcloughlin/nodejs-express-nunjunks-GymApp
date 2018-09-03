@@ -3,18 +3,24 @@
 const _ = require('lodash');
 const JsonStore = require('./json-store');
 
-const members = {
+const userStorApi = {
 
-    store: new JsonStore('./models/members.json', { memberCollection: [] }),
-    collection: 'memberCollection',
+    store: new JsonStore('./models/users.json', { userCollection: [] }),
+    collection: 'userCollection',
 
     add(user) {
       this.store.add(this.collection, user);
+      this.store.save();
     },
 
     remove(id) {
       const user = this.findById(id);
       this.store.remove(this.collection, user);
+      this.store.save();
+    },
+
+    update(user) {
+      this.store.update(this.collection, user);
       this.store.save();
     },
 
@@ -43,5 +49,5 @@ const members = {
       },
   };
 
-module.exports = members;
+module.exports = userStorApi;
 

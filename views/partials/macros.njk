@@ -1,0 +1,105 @@
+{% macro assessmentrow(assessment, member, with_delete, with_comment) %}
+      <tr>
+        <td> {{ assessment.date }}a </td>
+        <td> {{ assessment.weight }}b</td><td> {{ assessment.chest }}c </td><td> {{ assessment.thigh }}d </td>
+        <td> {{ assessment.upperarm }}e </td><td> {{ assessment.waist }}f </td><td> {{ assessment.hips }}g  </td>
+        <td>
+            <a class="ui {{ 'teal' if assessment.trend else 'red' }} tag label"></a>
+        </td>
+            <td>
+                {{ assessment.comment if with_comment else '' }}
+            </td>
+      </tr>
+
+    {% if with_delete %}
+
+      <td>
+        <a href='/dashboard/{{ member.id }}/deleteassessment/{{ assessment.id }}' class="ui icon button">
+          <i class='icon trash'></i>
+        </a>
+      </td>
+
+    {% endif %}
+{% endmacro %}
+
+
+{% macro assessmenttable(assessments, member, with_delete, with_comments) %}
+    {% if assessments and member %}
+        {% for a in assessments.assessmentCollection %}
+            <table class="ui celled table">
+                <thead>
+                <tr>
+                    <th> Date </th>
+                    <th> Weight </th>
+                    <th> Chest </th>
+                    <th> Thigh </th>
+                    <th> Upper Arm </th>
+                    <th> Waist </th>
+                    <th> Hips </th>
+                    <th> Trend </th>
+                    <th> Comment </th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {{ assessmentrow(a, member, with_delete, with_comments) }}
+
+                </tbody>
+            </table>
+
+            {% if with_comments %}
+                <h4 class="ui header">
+                    Comments
+                </h4>
+                <form class="ui form" action="/editcomment/{{ a.id }}" method="POST">
+                    <div class="ui field">
+                        <textarea rows="2" name="comment"> {{ a.comment }} </textarea>
+                    </div>
+                    <button class="ui blue submit button"> Update </button>
+                </form>
+            {% endif %}
+
+        {% endfor %}
+    {%  endif %}
+{% endmacro %}
+
+{% macro analytics(member, memberStats) %}
+    {% if member %}
+        <section class="ui segment">
+            <div class="ui four small statistics">
+                <div class="ui statistic">
+                    <div class="value">
+                        <i class="user icon"></i>
+                    </div>
+                    <div class="label">
+                        {{ member.name }}
+                    </div>
+                </div>
+                <div class="ui statistic">
+                    <div class="value">
+                        <i class="{{ 'green' if memberStats.isIdealBodyweight else 'red' }} dashboard icon"></i>
+                    </div>
+                    <div class="label">
+                        Ideal Weight Indicator
+                    </div>
+                </div>
+                <div class="ui statistic">
+                    <div class="value">
+                        <i class="heartbeat icon"></i> {{ memberStats.bmi }}
+                    </div>
+                    <div class="label">
+                        BMI
+                    </div>
+                </div>
+                <div class="ui statistic">
+                    <div class="value">
+                        <i class="doctor icon"></i>
+                    </div>
+                    <div class="label">
+                        {{ memberStats.bmiCategory }}
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endif %}
+{% endmacro %}

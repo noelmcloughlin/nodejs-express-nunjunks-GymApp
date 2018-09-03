@@ -19,7 +19,7 @@
     ","
   ],
   "disallowMixedSpacesAndTabs": true,
-  "disallowTrailingWhitespace": true,
+  "disallowTrailingWhitespace": false,
   "requireTrailingComma": { "ignoreSingleLine": true },
   "requireSpaceAfterComma": true,
   "disallowYodaConditions": true,
@@ -79,6 +79,5 @@
   "validateIndentation": 2,
   "maximumLineLength": 180,
   "excludeFiles": [
-    "./server.js"
   ]
 }

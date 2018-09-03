@@ -1,0 +1,45 @@
+{
+  "userCollection": [
+    {
+      "name": "Mark",
+      "address": "New York",
+      "email": "mark@gmail.com",
+      "password": "secret",
+      "height": "2.0",
+      "startingweight": "22",
+      "gender": "M",
+      "role": "member",
+      "id": "8b3fa5a7-3dfa-46b5-a0b8-8a5ebb8faf38"
+    },
+    {
+      "email": "marge@simpson.com",
+      "password": "secret",
+      "name": "Marge Simpson",
+      "role": "trainer",
+      "gender": "F",
+      "id": "6a09adc2-8d92-41b4-acf2-28e7702d7ea"
+    },
+    {
+      "name": "Frank",
+      "address": "Russia",
+      "gender": "F",
+      "email": "frank@example.com",
+      "password": "secret",
+      "height": "2.0",
+      "startingweight": "27",
+      "role": "trainer",
+      "id": "8518829a-38d1-4cc0-9eef-921bd9cf2135"
+    },
+    {
+      "name": "Lulu",
+      "address": "San Francisco",
+      "gender": "F",
+      "email": "lulu@example.com",
+      "password": "secret",
+      "height": "1.8",
+      "startingweight": "28",
+      "role": "member",
+      "id": "14c5f480-7816-4d30-ac99-3ae0aaa4f100"
+    }
+  ]
+}

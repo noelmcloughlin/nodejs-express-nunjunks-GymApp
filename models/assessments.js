@@ -3,13 +3,14 @@
 const _ = require('lodash');
 const JsonStore = require('./json-store');
 
-const assessments = {
+const assessmentStorApi = {
 
     store: new JsonStore('./models/assessments.json', { assessmentCollection: [] }),
     collection: 'assessmentCollection',
 
     add(assessment) {
       this.store.add(this.collection, assessment);
+      this.store.save();
     },
 
     remove(id) {
@@ -18,12 +19,17 @@ const assessments = {
       this.store.save();
     },
 
+    update(assessment) {
+      this.store.update(this.collection, assessment);
+      this.store.save();
+    },
+
     findById(id) {
       return this.store.findOneBy(this.collection, { id: id });
     },
 
-    findByMemberId(memberid) {
-      return this.store.findOneBy(this.collection, { memberid: memberid });
+    findByMemberId(id) {
+      return this.store.findOneBy(this.collection, { memberid: id });
     },
 
     findAll: function () {
@@ -31,4 +37,4 @@ const assessments = {
       },
   };
 
-module.exports = assessments;
+module.exports = assessmentStorApi;

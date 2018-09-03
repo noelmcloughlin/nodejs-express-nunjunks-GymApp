@@ -1,8 +1,10 @@
 'use strict';
 
-const members = require('../models/members');
-const trainers = require('../models/trainers');
 const logger = require('../utils/logger');
+const members = require('../models/users');
+
+const assessmentStorApi = require('../models/assessments');
+const userStorApi = require('../models/users');
 const uuid = require('uuid');
 
 const accounts = {
@@ -32,10 +34,10 @@ const accounts = {
       return '';
     },
 
-    getLoggedInUser(request, response) {
-      //const userEmail = request.cookies.gymapp;
-      let userEmail = this.getCookie('nodeJsGymApp');
-      return (trainers.findByEmail(userEmail) || members.findByEmail(userEmail));
+    getLoggedInUser(request) {
+      const userEmail = accounts.getCookie('nodeJsGymApp');
+      const user = userStorApi.findByEmail(userEmail);
+      return user;
     },
 
     index(request, response) {
@@ -47,62 +49,109 @@ const accounts = {
     },
 
     signup(request, response) {
-      const viewData = {
-          title: 'Signup to the GymApp',
-          id: 'signup',
-        };
-      response.render(viewData.id, viewData);
+      const loggedinUser = accounts.getLoggedInUser(request);
+      if (loggedinUser)
+          response.redirect('/dashboard');
+      else {
+        const viewData = {
+            title: 'Signup to the GymApp',
+            id: 'signup',
+          };
+        response.render('signup', viewData);
+      }
     },
 
     login(request, response) {
-      const viewData = {
-          title: 'Login to the GymApp',
-          id: 'login',
-        };
-      response.render(viewData.id, viewData);
+      const loggedinUser = accounts.getLoggedInUser(request);
+      if (loggedinUser)
+          response.redirect('/dashboard');
+      else {
+        const viewData = {
+            title: 'Login to the GymApp',
+            id: 'login',
+          };
+        response.render('login', viewData);
+      }
     },
 
     settings(request, response) {
-      let user = this.getLoggedInUser(request);
-      const viewData = {
-          title: 'Settings',
-          id: 'settings',
-        };
-      response.render(viewData.id, viewData);
+      const loggedinUser = accounts.getLoggedInUser(request);
+      if (!loggedinUser)
+          response.redirect('/dashboard');
+      else {
+        const viewData = {
+            title: 'Settings',
+            id: 'settings',
+            user: loggedinUser,
+          };
+        response.render('settings', viewData);
+      }
     },
 
-    updateSettings(request, response) {
-      const user = request.body;
-      members.update(user);
-      response.redirect('/settings');
-    },
+    updateSettings: function (request, response) {
+        let loggedinUser = accounts.getLoggedInUser(request);
+        if (!loggedinUser)
+            response.redirect('/dashboard');
+        else {
+          const user = request.body;
+          loggedinUser.email = user.email;
+          loggedinUser.name = user.name;
+          loggedinUser.password = user.password;
+          loggedinUser.address = user.address;
+          loggedinUser.role = user.role;
+          loggedinUser.gender = user.gender;
+          loggedinUser.height = user.height;
+          loggedinUser.startingweight = user.startingweight;
+          console.log(request.body);
 
-    logout(request, response) {
-      response.cookie('gymapp', '');
-      response.redirect('/');
-    },
+          userStorApi.update(loggedinUser);
+          response.redirect('/dashboard');
+        }
+      },
+
+    logout: function (request, response) {
+        const loggedinUser = accounts.getLoggedInUser(request);
+        if (loggedinUser) {
+          accounts.setCookie('nodeJsGymApp', '', -1);
+          response.redirect('/');
+        } else
+            response.redirect('/dashboard');
+      },
 
     register(request, response) {
-      const user = request.body;
-      user.id = uuid();
-      user.assessments = [];
-      members.add(user);
-      logger.info(`registering ${user.email}`);
-      response.redirect('/login');
+      const loggedinUser = accounts.getLoggedInUser(request);
+      if (!loggedinUser) {
+        const user = request.body;
+        user.id = uuid();
+        userStorApi.add(user);
+        response.redirect('/login');
+      } else
+          response.redirect('/dashboard');
     },
 
     authenticate(request, response) {
-      let user = members.findByEmail(request.body.email);
-      if (!user)
-          user = trainers.findByEmail(request.body.email);
-      if (user) {
-        //response.cookie('gymapp', user.email);
-        accounts.setCookie('nodeJsGymApp', user.email, 365);
-        logger.info(`logging in ${user.email}`);
-        response.render('dashboard', undefined);
-      } else {
-        response.render('login', undefined);
+      const loggedinUser = accounts.getLoggedInUser(request);
+      if (loggedinUser) {
+        response.redirect('/dashboard');
+        return;
       }
+
+      const user = userStorApi.findByEmail(request.body.email);
+      if (!user) {
+        response.redirect('/signup');
+        return;
+      }
+
+      accounts.setCookie('nodeJsGymApp', user.email, 365);
+      const viewData = {
+          title: 'Settings',
+          id: 'settings',
+          user: user,
+          assessments: assessmentStorApi.findByMemberId(user.id),
+        };
+      response.render('dashboard', viewData);
+      //window.location.reload(true);
+
     },
 
   };
