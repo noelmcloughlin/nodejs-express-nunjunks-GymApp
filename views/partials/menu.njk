@@ -1,20 +1,16 @@
-<nav class="ui menu">
-  <header class="ui header item"> Play Gym </header>
-  <div class="right menu">
-    <a id="dashboard" class="item" href="/dashboard"> Dashboard  </a>
-    <a id="about" class="item" href="/about"> About </a>
-    <div class="right menu">
-      <div class="ui dropdown item">
-        <i class="user icon"></i>
-        <div class="menu">
-          <a class="item" href="/settings">Settings</a>
-          <a class="item" href="/logout">Logout</a>
-        </div>
-      </div>
+<div class="ui container">
+  <div class="ui large secondary inverted pointing menu">
+    <a class="toc item">
+      <i class="sidebar icon"></i>
+    </a>
+    <a id="home" class="item" href="/">Home</a>
+    <div class="right item">
+      <a id="privacy" class="ui inverted button" href="/dashboard"> Dashboard </a>
+      <a id="signup" class="ui inverted button" href="/settings"> Settings  </a>
+      <a id="login" class="ui inverted button" href="/logout">  Logout   </a>
     </div>
   </div>
-</nav>
-
+</div>
 <script>
   $("#{{ id }}").addClass("active item");
 </script>

@@ -13,7 +13,7 @@ const members = {
     },
 
     remove(id) {
-      const user = this.getUser(id);
+      const user = this.findById(id);
       this.store.remove(this.collection, user);
       this.store.save();
     },

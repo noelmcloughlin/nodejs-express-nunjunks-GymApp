@@ -9,7 +9,7 @@
 
         <section class="ui segment">
             {{ analytics(member, memberStats) }}            {# call nunjunks macro #}
-            {% include "partials/addassessment.html" %}
+            {% include "partials/addassessment.njk" %}
             {{ assessmenttable(assessments, member, false) }}      {# call nunjunks macro #}
         </section>
     </div>

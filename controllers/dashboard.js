@@ -10,7 +10,7 @@ const uuid = require('uuid');
 
 const dashboard = {
   index(request, response) {
-    const member = accounts.getLoggedInUser();
+    const member = accounts.getLoggedInUser(request);
     const assessments = member.assessments;
     const memberStats = analytics.generateMemberStats(member);
     const viewData = {
@@ -20,7 +20,7 @@ const dashboard = {
         assessments: assessments,
         memberStats: memberStats,
       };
-    response.render(viewData.id, viewData);
+    response.render('dashboard', viewData);
   },
 
   addassessment: function (request, response) {
@@ -34,14 +34,7 @@ const dashboard = {
       assessment.trend = memberStats.trend;
 
       member.assessments.unshift(assessment.id);
-      const viewData = {
-          title: 'Member Dashboard',
-          id: 'dashboard',
-          member: member,
-          assessments: assessments.findByMemberId(member.id),
-          memberStats: memberStats,
-        };
-      response.render(viewData.id, viewData);
+      response.redirect('/dashboard');
     },
 
   deleteassessment: function (request, response) {
@@ -53,14 +46,7 @@ const dashboard = {
 
       member.assessments.remove(assessment);
       assessments.remove(assessmentId);
-      const viewData = {
-          title: 'Dashboard',
-          id: 'dashboard',
-          member: member,
-          assessments: assessments.findByMemberId(memberId),
-          memberStats: memberStats,
-        };
-      response.render(viewData.id, viewData);
+      response.redirect('/dashboard');
     },
 };
 

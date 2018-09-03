@@ -9,7 +9,7 @@ const uuid = require('uuid');
 
 const trainerdashboard = {
     index(request, response) {
-      const trainer = accounts.getLoggedInUser();
+      const trainer = accounts.getLoggedInUser(request);
       const viewData = {
           title: 'Trainer Dashboard',
           id: 'trainerdashboard',
@@ -34,7 +34,7 @@ const trainerdashboard = {
       },
 
     editComment(request, response) {
-      const trainer = accounts.getLoggedInUser();
+      const trainer = accounts.getLoggedInUser(request);
       const member = members.findById(request.param.id);
       const assessment = assessments.findById(request.param.id);
       assessment.comment = request.param.comment;
@@ -48,7 +48,7 @@ const trainerdashboard = {
     },
 
     deletemember: function (request, response) {
-        const trainer = accounts.getLoggedInUser();
+        const trainer = accounts.getLoggedInUser(request);
         const memberId = request.param.id;
         const member = members.findById(memberId);
         if (member != null) {
