@@ -1,5 +1,5 @@
 ### draw row in html
-{%- macro assessment-row(assessment, member, with_delete, with_comment) -%}
+{%- macro assessmentrow(assessment, member, with_delete, with_comment) -%}
 
     {%- if assessment %}
       <tr>
@@ -26,16 +26,26 @@
 
 
 ### draw table in html
-{%- macro assessment-table(assessments, with_comments) %}
+{%- macro assessmenttable(assessments, with_comments) %}
     {%- if assessments %}
         {%- for assessment in assessments %}
 
             <table class="ui celled table">
                 <thead>
-                {%- include "layouts/assessment-header.html" %}
+                <tr>
+                    <th> Date </th>
+                    <th> Weight </th>
+                    <th> Chest </th>
+                    <th> Thigh </th>
+                    <th> Upper Arm </th>
+                    <th> Waist </th>
+                    <th> Hips </th>
+                    <th> Trend </th>
+                    <th> Comment </th>
+                </tr>
                 </thead>
                 <tbody>
-                {{ assessment-row(assessment, member, false) }} //macro
+                {{ assessmentrow(assessment, member, false) }} {# call nunjunks macro #}
                 </tbody>
             </table>
 

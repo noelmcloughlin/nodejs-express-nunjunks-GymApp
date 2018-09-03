@@ -1,17 +1,17 @@
 {%- include "layouts/main.html" %}
+{%- from "partials/analytics-ui.njk" import 'analytics' %}
+{%- from "partials/assessment-ui.njk" import 'assessmenttable', 'assessmentrow' %}
 
-{%- from "macros/analytics-ui.njk" import analytics with context %}
-{%- from "macros/assessment-ui.njk" import assessment-table with context %}
-{%- from "macros/assessment-ui.njk" import assessment-row with context %}
-
+{% block content %}
 <div class="pusher">
     <div class="ui inverted vertical masthead center aligned segment">
         {%- include "partials/menu.njk" %}
 
         <section class="ui segment">
-            {{ analytics(member, memberStats) }}            //macro
+            {{ analytics(member, memberStats) }}            {# call nunjunks macro #}
             {% include "partials/addassessment.html" %}
-            {{ assessment-table(assessments, member, false) }}      //macro
+            {{ assessmenttable(assessments, member, false) }}      {# call nunjunks macro #}
         </section>
     </div>
 </div>
+{% endblock %}

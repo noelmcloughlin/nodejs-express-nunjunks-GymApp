@@ -21,7 +21,7 @@ router.post('/settings', accounts.updateSettings);
 //Member Dashboard
 router.get('/dashboard', dashboard.index);
 router.post('/dashboard/addassessment', dashboard.addassessment);
-router.get('/dashboard/{memberid}/deleteassessment/{assessmentid}', dashboard.deleteAssessment);
+router.get('/dashboard/{memberid}/deleteassessment/{assessmentid}', dashboard.deleteassessment);
 
 //About
 router.get('/about', about.index);
@@ -29,10 +29,9 @@ router.get('/privacy', about.privacy);
 router.get('/privacy/ok', accounts.index);
 
 //Trainer Dashboard
-//router.get('/trainerdashboard', trainerdashboard.index);
-//router.get('/trainerdashboard/deletemember/{id}', trainerdashboard.deleteMember);
-//router.get('/trainerassessment/{id}', trainerdashboard.trainerAssessment);
-//router.post('/editcomment/{id}', trainerdashboard.editComment);
-
+router.get('/trainerdashboard', trainerdashboard.index);
+router.get('/trainerdashboard/deletemember/{id}', trainerdashboard.deletemember);
+router.get('/trainerassessment/{id}', trainerdashboard.trainerassessment);
+router.post('/editcomment/{id}', trainerdashboard.editComment);
 
 module.exports = router;

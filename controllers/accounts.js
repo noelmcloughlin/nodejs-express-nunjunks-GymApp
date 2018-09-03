@@ -31,7 +31,7 @@ const accounts = {
     },
 
     settings(request, response) {
-      const user = getLoggedInMember();
+      const user = getLoggedInUser();
       const viewData = {
           title: 'Settings',
           id: 'settings',
@@ -54,44 +54,58 @@ const accounts = {
       this.index();
     },
 
-    getLoggedInMember(request) {
-      const userEmail = request.cookies.gymapp;
-      return members.findByEmail(userEmail);
-    },
-
-    getLoggedInTrainer(request) {
-      const userEmail = request.cookies.gymapp;
-      return trainers.findByEmail(userEmail);
+    getLoggedInUser(request) {
+      //const userEmail = request.cookies.gymapp;
+      let userEmail = accounts.getCookie('nodeJsGymApp');
+      return trainers.findByEmail(userEmail) || members.findByEmail(userEmail);
     },
 
     register(request, response) {
       const user = request.body;
       user.id = uuid();
+      user.assessments = [];
       members.add(user);
       logger.info(`registering ${user.email}`);
-      response.redirect('/');
+      response.render('login', undefined);
     },
 
-    authenticateMember(request, response) {
-      const user = members.findByEmail(request.body.email);
+    authenticate(request, response) {
+      let user = members.findByEmail(request.body.email);
+      if (!user)
+          user = trainers.findByEmail(request.body.email);
       if (user) {
-        response.cookie('gymapp', user.email);
+        //response.cookie('gymapp', user.email);
+        accounts.setCookie('nodeJsGymApp', user.email, 365);
         logger.info(`logging in ${user.email}`);
-        response.redirect('/dashboard');
+        response.render('dashboard', undefined);
       } else {
-        response.redirect('/login');
+        response.render('login', undefined);
       }
     },
 
-    authenticateTrainer(request, response) {
-      const user = trainers.findByEmail(request.body.email);
-      if (user) {
-        response.cookie('gymapp', user.email);
-        logger.info(`logging in ${user.email}`);
-        response.redirect('/trainerdashboard');
-      } else {
-        response.redirect('/login');
+    setCookie(cname, cvalue, exdays) {
+      var d = new Date();
+      d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+      var expires = 'expires=' + d.toUTCString();
+      document.cookie = cname + '=' + cvalue + ';' + expires + ';path=/';
+    },
+
+    getCookie(cname) {
+      var name = cname + '=';
+      var decodedCookie = decodeURIComponent(document.cookie);
+      var ca = decodedCookie.split(';');
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+        }
+
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
       }
+
+      return '';
     },
   };
 

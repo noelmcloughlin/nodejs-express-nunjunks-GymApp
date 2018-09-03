@@ -9,17 +9,18 @@ const analytics =
     generateMemberStats(member) {
       let weight = Number(member.startingweight);
       const assessments = member.assessments;
-      if (assessments.size() > 0) {
-        const assessment = assessments.get(Number(assessments.size()) - 1);    // get latest assessment
+      let num = Object.keys(assessments).size;
+      if (num > 0) {
+        const assessment = assessments.get(num - 1);    // get latest assessment
         weight = Number(assessment.weight);
-      }
 
-      stats.bmi = calculateBMI(member, weight);
-      stats.bmiCategory = determineBMICategory(stats.bmi);
-      stats.isIdealBodyweight = isIdealBodyWeight(member, weight);
-      stats.trend = true;
-      if (assessments.size() > 1) {
-        stats.trend = assessments.get(assessments.size() - 2).weight > assessments.get(assessments.size() - 1).weight;
+        stats.bmi = calculateBMI(member, weight);
+        stats.bmiCategory = determineBMICategory(stats.bmi);
+        stats.isIdealBodyweight = isIdealBodyWeight(member, weight);
+        stats.trend = true;
+        if (num > 1) {
+          stats.trend = assessments.get(num - 2).weight > assessments.get(num - 1).weight;
+        }
       }
 
       return stats;

@@ -33,6 +33,14 @@ const members = {
     checkPassword: function (password) {
         return this.password.equals(password);
       },
+
+    addAssessment: function (assessmentId) {
+        this.assessments.push(assessmentId);
+      },
+
+    removeAssessment: function (assessmentId) {
+        this.assessments.unshift(assessmentId);
+      },
   };
 
 module.exports = members;

@@ -1,16 +1,18 @@
 'use strict';
 
 const accounts = require('./accounts.js');
+const assessments = require('../models/assessments');
+const members = require('../models/members');
+const trainers = require('../models/trainers');
 const analytics = require('../utils/analytics');
 const logger = require('../utils/logger');
 const uuid = require('uuid');
 
 const dashboard = {
   index(request, response) {
-    const member = accounts.getLoggedInMember();
+    const member = accounts.getLoggedInUser();
     const assessments = member.assessments;
     const memberStats = analytics.generateMemberStats(member);
-    Collections.reverse(assessments);
     const viewData = {
         title: 'Member Dashboard',
         id: 'dashboard',
@@ -22,22 +24,21 @@ const dashboard = {
   },
 
   addassessment: function (request, response) {
-      const member = accounts.getLoggedInMember(request);
+      const member = accounts.getLoggedInUser(request);
       const assessment = request.body;
       assessment.id = uuid();
-      assessment.memberid = memberId;
+      assessment.memberid = member.id;
       assessments.add(assessment);
 
       const memberStats = analytics.generateMemberStats(member);
       assessment.trend = memberStats.trend;
 
-      member.assessments.add(assessment);
-      member.save();
+      member.assessments.unshift(assessment.id);
       const viewData = {
           title: 'Member Dashboard',
           id: 'dashboard',
           member: member,
-          assessments: assessments.findByMemberId(memberId),
+          assessments: assessments.findByMemberId(member.id),
           memberStats: memberStats,
         };
       response.render(viewData.id, viewData);

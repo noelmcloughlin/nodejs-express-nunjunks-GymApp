@@ -9,16 +9,21 @@ const routes = require('./routes');
 const nunjucks = require('nunjucks');
 const app = express();
 
+//cookies stuff
+const jsdom = require('jsdom');
+const { JSDOM } = jsdom;
+global.document = new JSDOM("localhost:4000").window.document;
+
+nunjucks.installJinjaCompat()
 nunjucks.configure('views', {
     autoescape: true,
     cache: false,
     express: app
 });
 
+app.set('view engine', 'njk');
 app.use(express.static('./public/'));
 app.use(require("body-parser").urlencoded({ extended: true }))
-app.set("views", __dirname + "/views");
-app.set("view engine", "njk");
 app.use('/', routes);
 
 app.use(cookieParser());

@@ -12,7 +12,7 @@ const about = {
     },
 
     privacy(request, response) {
-      response.render(viewData.id, viewData);
+      response.render('privacy', undefined);
     },
   };
 

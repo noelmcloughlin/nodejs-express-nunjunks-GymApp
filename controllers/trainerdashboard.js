@@ -3,13 +3,13 @@
 const accounts = require('./accounts.js');
 const members = require('../models/members');
 const assessments = require('../models/assessments');
-const trainers = require('../modesl/trainers');
+const trainers = require('../models/trainers');
 const logger = require('../utils/logger');
 const uuid = require('uuid');
 
 const trainerdashboard = {
     index(request, response) {
-      const trainer = accounts.getLoggedInTrainer();
+      const trainer = accounts.getLoggedInUser();
       const viewData = {
           title: 'Trainer Dashboard',
           id: 'trainerdashboard',
@@ -19,11 +19,10 @@ const trainerdashboard = {
     },
 
     trainerassessment: function (request, response) {
-        const trainer = accounts.getLoggedIntrainer();
+        const trainer = accounts.getLoggedInUser();
         const member = members.findById(request.param.id);
         const assessments = member.assessments;
         const memberStats = analytics.generateMemberStats(member);
-        Collections.reverse(assessments);
         const viewData = {
             title: 'Trainer Dashboard',
             id: 'trainerassessment',
@@ -35,7 +34,7 @@ const trainerdashboard = {
       },
 
     editComment(request, response) {
-      const trainer = accounts.getLoggedIntrainer();
+      const trainer = accounts.getLoggedInUser();
       const member = members.findById(request.param.id);
       const assessment = assessments.findById(request.param.id);
       assessment.comment = request.param.comment;
@@ -49,7 +48,7 @@ const trainerdashboard = {
     },
 
     deletemember: function (request, response) {
-        const trainer = accounts.getLoggedIntrainer();
+        const trainer = accounts.getLoggedInUser();
         const memberId = request.param.id;
         const member = members.findById(memberId);
         if (member != null) {
