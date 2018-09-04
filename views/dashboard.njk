@@ -37,13 +37,14 @@
 
                         {%- for person in users %}
                             {% if person.role == 'member' %}
+                                {% set id = person.id %}
 
                             <div class="item">
                                 <i class="large github middle aligned icon"></i>
                                 <div class="content">
                                     <div class="header">
-                                        <a href="/trainerassessment/{{ person.id }}"> {{ person.name }} </a>
-                                        <a href="/trainerdashboard/deletemember/{{ person.id }}">
+                                        <a href="/trainerassessment/{{ id }}"> {{ person.name }} </a>
+                                        <a href="/dashboard/deletemember/{{ id }}">
                                             <i class="ui large red icon trash"></i>
                                         </a>
                                     </div>
