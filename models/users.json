@@ -26,7 +26,7 @@
       "email": "frank@example.com",
       "password": "secret",
       "height": "2.0",
-      "startingweight": "27",
+      "startingweight": "276",
       "role": "trainer",
       "id": "8518829a-38d1-4cc0-9eef-921bd9cf2135"
     },
@@ -40,6 +40,17 @@
       "startingweight": "28",
       "role": "member",
       "id": "14c5f480-7816-4d30-ac99-3ae0aaa4f100"
+    },
+    {
+      "name": "Katie",
+      "address": "Katie Road",
+      "gender": "F",
+      "email": "katie@example.com",
+      "password": "secret",
+      "height": "2.0",
+      "startingweight": "25",
+      "role": "member",
+      "id": "f54976ea-f3a2-4fe5-8f16-ee8f6ebac558"
     }
   ]
 }

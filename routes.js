@@ -25,11 +25,11 @@ router.get('/dashboard', dashboard.index);
 
 //Member Dashboard
 router.post('/dashboard/addassessment', dashboard.addassessment);
-router.get('/dashboard/{id}/deleteassessment/{assessmentid}', dashboard.deleteassessment);
+router.get('/dashboard/:memberid/deleteassessment/:assessmentid', dashboard.deleteassessment);
 
 //Trainer Dashboard
-router.get('/dashboard/deletemember/{id}', dashboard.deletemember);
-router.get('/trainerassessment/{id}', dashboard.trainerassessment);
-router.post('/editcomment/{id}', dashboard.editcomment);
+router.get('/dashboard/deletemember/:memberid', dashboard.deletemember);
+router.get('/assessed/:memberid', dashboard.assessed);
+router.post('/editcomment/:memberid', dashboard.editcomment);
 
 module.exports = router;

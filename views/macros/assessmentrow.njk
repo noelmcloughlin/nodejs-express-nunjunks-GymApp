@@ -1,0 +1,31 @@
+{# See: https://css-tricks.com/killer-features-of-nunjucks/ #}
+
+{% macro assessmentrow(assessment, member, with_delete, with_comment) %}
+    <tr>
+        <td> {{ assessment.date }} </td>
+        <td> {{ assessment.weight }}</td>
+        <td> {{ assessment.chest }} </td>
+        <td> {{ assessment.thigh }}</td>
+        <td> {{ assessment.upperarm }} </td>
+        <td> {{ assessment.waist }} </td>
+        <td> {{ assessment.hips }}  </td>
+        {% if with_delete %}
+            <td>
+                <a href='/dashboard/{{ member.id }}/deleteassessment/{{ assessment.id }}' class="ui icon button">
+                    <i class='icon trash'></i>
+                </a>
+            </td>
+        {% endif %}
+        <td>
+            <a class="ui {{ 'teal' if assessment.trend else 'red' }} tag label"></a>
+        </td>
+        <td>
+            <form class="ui form" action="/editcomment/{{ assessment.id }}" method="POST">
+                <div class="ui field">
+                    <textarea rows="2" name="comment"> {{ assessment.comment }} </textarea>
+                </div>
+                <button class="ui blue submit button"> Update </button>
+            </form>
+        </td>
+    </tr>
+{% endmacro %}

@@ -1,5 +1,8 @@
 {% include "layouts/main.html" %}
-{% from "partials/macros.njk" import analytics, assessmenttable, assessmentrow %}
+
+{% from "macros/assessmenttable.njk" import assessmenttable with context %}
+{% from "macros/assessmentrow.njk" import assessmentrow with context %}
+{% from "macros/analytics.njk" import analytics with context %}
 
 <div class="pusher">
   <div class="ui inverted vertical masthead center aligned segment">

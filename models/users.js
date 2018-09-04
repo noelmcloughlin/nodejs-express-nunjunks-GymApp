@@ -12,13 +12,29 @@ const userStorApi = {
       return this.store.findAll(this.collection);
     },
 
+    findAllMembers: function () {
+        let members = {};
+        let users = this.store.findAll(this.collection);
+        for (var user in users) {
+          if (user.role == 'member') {
+            members.add(user);
+          }
+        };
+
+        return members;
+      },
+
     add(user) {
       this.store.add(this.collection, user);
+      this.store.save();
+
     },
 
     remove(id) {
       const user = this.findById(id);
       this.store.remove(this.collection, user);
+      this.store.save();
+
     },
 
     update(user) {
@@ -43,7 +59,7 @@ const userStorApi = {
     },
 
     removeAssessment(assessmentId) {
-      this.assessments.unshift(assessmentId);
+      this.assessments.remove(assessmentId);
     },
   };
 
