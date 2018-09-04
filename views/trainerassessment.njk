@@ -6,12 +6,13 @@
 
     {% include "partials/menu.njk" %}
 
-    {{ analytics(user, memberStats) }}    {# call my nunjunks macro #}
+    {{ analytics(member, memberStats) }}    {# call my nunjunks macro #}
 
     <section class="ui segment">
 
         {% if assessments %}
-            {{ assessmenttable(assessments, user, false, true) }}   {# call my nunjunks macro #}
+
+            {{ assessmenttable(assessments, member, false, true) }}   {# call my nunjunks macro #}
 
         {%  else %}
             {{  'No assessments found.' }}

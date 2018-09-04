@@ -20,7 +20,7 @@ const dashboard = {
               id: 'dashboard',
               trainer: user,
               user: user,
-              members: userStorApi.findAll(),
+              users: userStorApi.findAll(),
             };
           response.render('dashboard', viewData);
 
@@ -46,7 +46,6 @@ const dashboard = {
           const memberStats = analyticsApi.generateMemberStats(member, assessmentStorApi.findByMemberId(member.id));
           assessment.trend = memberStats.trend;
         }
-        console.log(member);
 
         response.redirect('/dashboard');
       },
@@ -70,7 +69,6 @@ const dashboard = {
             title: 'Trainer Dashboard',
             id: 'trainerassessment',
             member: member,
-            trainer: trainer,
             assessments: assessmentStorApi.findByMemberId(member.id),
             memberStats: memberStats,
           };
@@ -85,12 +83,12 @@ const dashboard = {
       assessments.update(assessment);
       const viewData = {
           title: 'Trainer Dashboard',
-          id: 'trainerdashboard',
+          id: 'dashboard',
           trainer: trainer,
           member: member,
           members: members.findAll(),
         };
-      response.redirect('/trainerdashboard');
+      response.redirect(viewData.id);
     },
 
     deletemember: function (request, response) {
@@ -111,12 +109,12 @@ const dashboard = {
         //
         const viewData = {
             title: 'trainer Dashboard',
-            id: 'trainerdashboard',
+            id: 'dashboard',
             trainer: trainer,
             member: member,
             members: members.findAll(),
           };
-        response.redirect('/trainerdashboard');
+        response.redirect(viewData.id);
       },
   };
 

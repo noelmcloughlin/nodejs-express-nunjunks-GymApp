@@ -5,18 +5,20 @@ const JsonStore = require('./json-store');
 
 const userStorApi = {
 
-    store: new JsonStore('./models/users.json', { userCollection: [] }),
-    collection: 'userCollection',
+    store: new JsonStore('./models/users.json', { users: [] }),
+    collection: 'users',
+
+    findAll: function () {
+      return this.store.findAll(this.collection);
+    },
 
     add(user) {
       this.store.add(this.collection, user);
-      this.store.save();
     },
 
     remove(id) {
       const user = this.findById(id);
       this.store.remove(this.collection, user);
-      this.store.save();
     },
 
     update(user) {
@@ -32,21 +34,17 @@ const userStorApi = {
       return this.store.findOneBy(this.collection, { id: id });
     },
 
-    findAll: function () {
-        return this.store.findAll(this.collection);
-      },
+    checkPassword(password) {
+      return this.password.equals(password);
+    },
 
-    checkPassword: function (password) {
-        return this.password.equals(password);
-      },
+    addAssessment(assessmentId) {
+      this.assessments.push(assessmentId);
+    },
 
-    addAssessment: function (assessmentId) {
-        this.assessments.push(assessmentId);
-      },
-
-    removeAssessment: function (assessmentId) {
-        this.assessments.unshift(assessmentId);
-      },
+    removeAssessment(assessmentId) {
+      this.assessments.unshift(assessmentId);
+    },
   };
 
 module.exports = userStorApi;
