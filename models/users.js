@@ -1,7 +1,7 @@
 'use strict';
 
 const _ = require('lodash');
-const JsonStore = require('./json-store');
+const JsonStore = require('./jsonAPI');
 
 const userStorApi = {
 
@@ -13,15 +13,7 @@ const userStorApi = {
     },
 
     findAllMembers: function () {
-        let members = {};
-        let users = this.store.findAll(this.collection);
-        for (var user in users) {
-          if (user.role == 'member') {
-            members.add(user);
-          }
-        };
-
-        return members;
+        return this.store.findAll(this.collection, { role: 'member' });
       },
 
     add(user) {
@@ -50,8 +42,8 @@ const userStorApi = {
       return this.store.findOneBy(this.collection, { id: id });
     },
 
-    checkPassword(password) {
-      return this.password.equals(password);
+    checkPassword(user, password) {
+      return (user.password == password);
     },
 
     addAssessment(assessmentId) {

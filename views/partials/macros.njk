@@ -1,0 +1,101 @@
+{# See: https://css-tricks.com/killer-features-of-nunjucks/ #}
+
+{% macro assessmentrow(assessment, member, with_delete, with_comment) %}
+    <tr>
+        <td> {{ assessment.date }} </td>
+        <td> {{ assessment.weight }}</td>
+        <td> {{ assessment.chest }} </td>
+        <td> {{ assessment.thigh }}</td>
+        <td> {{ assessment.upperarm }} </td>
+        <td> {{ assessment.waist }} </td>
+        <td> {{ assessment.hips }}  </td>
+        {% if with_delete %}
+            <td>
+                <a href='/dashboard/{{ member.id }}/deleteassessment/{{ assessment.id }}' class="ui icon button">
+                    <i class='icon trash'></i>
+                </a>
+            </td>
+        {% endif %}
+        <td>
+            <a class="ui {{ 'teal' if assessment.trend else 'red' }} tag label"></a>
+        </td>
+        <td>
+            <form class="ui form" action="/editcomment/{{ assessment.id }}" method="POST">
+                <div class="ui field">
+                    <textarea rows="2" name="comment"> {{ assessment.comment }} </textarea>
+                </div>
+                <button class="ui blue submit button"> Update </button>
+            </form>
+        </td>
+    </tr>
+{% endmacro %}
+
+
+{% macro assessmenttable(assessments, member, with_delete, with_comments) %}
+
+    <table class="ui celled table">
+        <thead>
+        <tr>
+            <th> Date </th>
+            <th> Weight </th>
+            <th> Chest </th>
+            <th> Thigh </th>
+            <th> Upper Arm </th>
+            <th> Waist </th>
+            <th> Hips </th>
+            <th> Trend </th>
+            <th> Comment </th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for assessment in assessments %}
+            {{ assessmentrow(assessment, member, with_delete, with_comments) }}
+        {% endfor %}
+
+        </tbody>
+    </table>
+{% endmacro %}
+
+{# See: https://css-tricks.com/killer-features-of-nunjucks/ #}
+
+{% macro analytics(member, memberStats) %}
+    {% if member %}
+        <section class="ui segment">
+            <div class="ui four small statistics">
+                <div class="ui statistic">
+                    <div class="value">
+                        <i class="user icon"></i>
+                    </div>
+                    <div class="label">
+                        {{ member.name }}
+                    </div>
+                </div>
+                <div class="ui statistic">
+                    <div class="value">
+                        <i class="{{ 'green' if memberStats.isIdealBodyweight else 'red' }} dashboard icon"></i>
+                    </div>
+                    <div class="label">
+                        Ideal Weight Indicator
+                    </div>
+                </div>
+                <div class="ui statistic">
+                    <div class="value">
+                        <i class="heartbeat icon"></i> {{ memberStats.bmi }}
+                    </div>
+                    <div class="label">
+                        BMI
+                    </div>
+                </div>
+                <div class="ui statistic">
+                    <div class="value">
+                        <i class="doctor icon"></i>
+                    </div>
+                    <div class="label">
+                        {{ memberStats.bmiCategory }}
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endif %}
+{% endmacro %}

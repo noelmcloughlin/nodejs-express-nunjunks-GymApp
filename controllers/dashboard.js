@@ -9,6 +9,7 @@ const logger = require('../utils/logger');
 const uuid = require('uuid');
 
 const dashboard = {
+    
     index: function (request, response) {
         const user = accountsApi.getLoggedInUser(request);
         if (!user) {
@@ -22,9 +23,11 @@ const dashboard = {
           response.render('dashboard', viewData);
 
         } else if (user.role == 'member') {
+          const assessmentList = assessmentStorApi.findByMemberId(user.id);
+
           const viewData = {
               user: user,
-              assessments: assessmentStorApi.findByMemberId(user.id),
+              assessmentList: assessmentList,
               memberStats: analyticsApi.generateMemberStats(user, assessmentStorApi.findByMemberId(user.id)),
             };
           response.render('dashboard', viewData);
@@ -36,10 +39,13 @@ const dashboard = {
         if (member) {
           const assessment = request.body;
           assessment.id = uuid();
+          assessment.comment = '';
           assessment.memberid = member.id;
-          assessmentStorApi.add(assessment);
-          const memberStats = analyticsApi.generateMemberStats(member, assessmentStorApi.findByMemberId(member.id));
-          assessment.trend = memberStats.trend;
+          if (assessmentStorApi.add(assessment)) {
+            console.log('Assessment added');
+            const memberStats = analyticsApi.generateMemberStats(member, assessmentStorApi.findByMemberId(member.id));
+            assessment.trend = memberStats.trend;
+          }
         }
 
         response.redirect('/dashboard');
@@ -49,8 +55,10 @@ const dashboard = {
         const member = userStorApi.findById(request.params.memberid);
         const assessmentid = request.params.assessmentid;
         const assessment = assessmentStorApi.findById(assessmentid);
-        assessmentStorApi.remove(assessmentid);
-        response.redirect('/dashboard');
+        if (assessmentStorApi.remove(assessmentid)) {
+          console.log('Assessement removed');
+          response.redirect('/dashboard');
+        }
       },
 
     assessed: function (request, response) {
@@ -67,31 +75,33 @@ const dashboard = {
     editcomment(request, response) {
       const member = userStorApi.findById(request.params.memberid);
       const assessment = assessmentStorApi.findById(request.params.assessmentid);
-      assessment.comment = request.params.comment;
-      assessmentStorApi.update(assessment);
-      const viewData = {
-          member: member,
-          members: userStorApi.findAllMembers(),
-        };
-      response.redirect('/dashboard');
-    },
-
-    deletemember: function (request, response) {
-        const memberid = request.params.memberid;
-        const member = userStorApi.findById(memberid);
-        if (member != null) {
-          userStorApi.remove(memberid);
-        };
-
-        for (var a in assessmentStorApi.findByMemberId(memberid)) {
-          assessmentStorApi.remove(a);
-        }
-
+      console.log('response.body.comment ', request.body.comment);
+      assessment.comment = request.body.comment;
+      if (assessmentStorApi.update(assessment)) {
         const viewData = {
             member: member,
             members: userStorApi.findAllMembers(),
           };
-        response.redirect('/dashboard');
+        console.log('Comment updated');
+      }
+
+      response.redirect('/dashboard');
+    },
+
+    deletemember: function (request, response) {
+        const member = userStorApi.findById(request.params.memberid);
+        if (member && userStorApi.remove(member.id)) {
+          for (var thing in assessmentStorApi.findByMemberId(member.id)) {
+            assessmentStorApi.remove(thing);
+          }
+
+          console.log('Member removed');
+          const viewData = {
+              member: member,
+              members: userStorApi.findAllMembers(),
+            };
+          response.redirect('/dashboard');
+        }
       },
   };
 

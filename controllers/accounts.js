@@ -41,11 +41,7 @@ const accounts = {
     },
 
     index(request, response) {
-        const viewData = {
-            title: 'Login or Signup',
-            id: 'about',
-        };
-        response.render('about', viewData);
+        response.render('about', undefined);
     },
 
     signup(request, response) {
@@ -53,11 +49,7 @@ const accounts = {
         if (loggedinUser)
             response.redirect('/dashboard');
         else {
-            const viewData = {
-                title: 'Signup to the GymApp',
-                id: 'signup',
-            };
-            response.render('signup', viewData);
+            response.render('signup', undefined);
         }
     },
 
@@ -66,11 +58,7 @@ const accounts = {
         if (loggedinUser)
             response.redirect('/dashboard');
         else {
-            const viewData = {
-                title: 'Login to the GymApp',
-                id: 'login',
-            };
-            response.render('login', viewData);
+            response.render('login', undefined);
         }
     },
 
@@ -80,8 +68,6 @@ const accounts = {
             response.redirect('/dashboard');
         else {
             const viewData = {
-                title: 'Settings',
-                id: 'settings',
                 user: loggedinUser,
             };
             response.render('settings', viewData);
@@ -136,16 +122,12 @@ const accounts = {
         }
 
         const user = userStorApi.findByEmail(request.body.email);
-        if (!user) {
-            response.redirect('/signup');
-            return;
-        }
-        if (user && userStorApi.checkPassword(request.body.password)) {
+        if (user && userStorApi.checkPassword(user, request.body.password)) {
             accounts.setCookie('nodeJsGymApp', user.email, 365);
-            dashboard.index();
+            response.redirect('/dashboard');
         } else {
-            Logger.info("Authentication failed");
-            login();
+            console.log("Authentication failed for ", user.email);
+            response.redirect('/login');
         }
     }
 };

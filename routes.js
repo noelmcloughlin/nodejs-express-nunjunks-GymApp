@@ -30,6 +30,6 @@ router.get('/dashboard/:memberid/deleteassessment/:assessmentid', dashboard.dele
 //Trainer Dashboard
 router.get('/dashboard/deletemember/:memberid', dashboard.deletemember);
 router.get('/assessed/:memberid', dashboard.assessed);
-router.post('/editcomment/:memberid', dashboard.editcomment);
+router.post('/editcomment/:assessmentid', dashboard.editcomment);
 
 module.exports = router;

@@ -1,7 +1,7 @@
 'use strict';
 
 const _ = require('lodash');
-const JsonStore = require('./json-store');
+const JsonStore = require('./jsonAPI');
 
 const assessmentStorApi = {
 
@@ -29,7 +29,7 @@ const assessmentStorApi = {
     },
 
     findByMemberId(id) {
-      return this.store.findOneBy(this.collection, { memberid: id });
+      return this.store.findAll(this.collection, { memberid: id });
     },
 
     findAll: function () {
