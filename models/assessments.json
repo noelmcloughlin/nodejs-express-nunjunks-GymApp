@@ -2,92 +2,14 @@
   "assessmentCollection": [
     {
       "weight": "22",
-      "chest": "2",
-      "thigh": "2",
-      "upperarm": "2",
-      "waist": "2",
-      "comment": "  ss",
-      "hips": "2",
-      "id": "a6c5e77e-c099-4326-b595-8c15d93da7b9",
-      "memberid": "5487ccc3-7110-474e-b923-2e97961de100"
-    },
-    {
-      "weight": "17",
-      "chest": "7",
-      "thigh": "7",
-      "upperarm": "7",
-      "waist": "7",
-      "comment": "ff  ",
-      "hips": "7",
-      "id": "9e1a0421-6354-4a9a-b77e-c9855c6d4834",
-      "memberid": "f54976ea-f3a2-4fe5-8f16-ee8f6ebac558"
-    },
-    {
-      "weight": "34",
-      "chest": "4",
-      "thigh": "4",
-      "upperarm": "4",
-      "waist": "4",
-      "comment": " ssss",
-      "hips": "4",
-      "id": "02da6814-18ef-43df-b81d-c1199bab4f0a",
-      "memberid": "f54976ea-f3a2-4fe5-8f16-ee8f6ebac558",
-      "trend": 0
-    },
-    {
-      "weight": "4444",
-      "chest": "4",
-      "thigh": "4",
-      "upperarm": "4",
-      "waist": "4",
-      "comment": "",
-      "hips": "4",
-      "id": "e5550e1c-b076-475a-a7fb-6bffad60ec52",
-      "memberid": "f54976ea-f3a2-4fe5-8f16-ee8f6ebac558"
-    },
-    {
-      "weight": "666",
-      "chest": "6",
-      "thigh": "6",
-      "upperarm": "6",
-      "waist": "6",
-      "comment": "",
-      "hips": "6",
-      "id": "f247ab58-1bbc-469e-bc73-68c539646b9d",
-      "memberid": "f54976ea-f3a2-4fe5-8f16-ee8f6ebac558"
-    },
-    {
-      "weight": "55",
-      "chest": "5",
-      "thigh": "5",
-      "upperarm": "5",
-      "waist": "5",
-      "comment": "",
-      "hips": "5",
-      "id": "df1e3bbe-cef0-42bc-b422-064a3c42bc32",
-      "memberid": "f54976ea-f3a2-4fe5-8f16-ee8f6ebac558"
-    },
-    {
-      "weight": "555",
-      "chest": "5",
-      "thigh": "5",
-      "upperarm": "5",
-      "waist": "5",
-      "comment": "",
-      "hips": "5",
-      "id": "406edafa-cea5-4f7f-8d03-ba16ced38a7f",
-      "memberid": "f54976ea-f3a2-4fe5-8f16-ee8f6ebac558"
-    },
-    {
-      "weight": "22",
-      "chest": "2",
-      "thigh": "2",
-      "upperarm": "2",
-      "waist": "2",
-      "comment": "",
-      "hips": "2",
-      "id": "d2fb7dac-14b1-4e46-8f90-d77bfd9622e3",
-      "memberid": "f54976ea-f3a2-4fe5-8f16-ee8f6ebac558"
+      "chest": "22",
+      "thigh": "22",
+      "upperarm": "22",
+      "waist": "22",
+      "hips": "22",
+      "id": "1b4eee2c-8f3c-4765-a02a-ae6debb841df",
+      "comment": "  ssss",
+      "memberid": "14c5f480-7816-4d30-ac99-3ae0aaa4f100"
     }
   ]
 }

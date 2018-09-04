@@ -19,7 +19,7 @@
                     {% include "partials/addassessment.njk" %}
 
                         {% if assessmentList %}
-                    {{ assessmenttable(assessmentList, user, false, true) }}   {# nunjunks macro #}
+                    {{ assessmenttable(assessmentList, user, False, True, False) }}   {# nunjunks macro #}
                         {%  else %}
                     {{  'No assessments found.' }}
                         {% endif %}
@@ -27,6 +27,7 @@
                 {% elif user.role == 'trainer' %}                  {### TRAINER ###}
 
                     <div class="ui relaxed divided list">
+
                         {%- for member in users %}
 
                             {% if member.role == 'member' %}

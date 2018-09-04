@@ -14,8 +14,7 @@ const assessmentStorApi = {
     },
 
     remove(id) {
-      const assessment = this.findById(id);
-      this.store.remove(this.collection, assessment);
+      this.store.remove(this.collection, this.findById(id));
       this.store.save();
     },
 
@@ -29,7 +28,7 @@ const assessmentStorApi = {
     },
 
     findByMemberId(id) {
-      return this.store.findAll(this.collection, { memberid: id });
+      return this.store.findBy(this.collection, { memberid: id });
     },
 
     findAll: function () {

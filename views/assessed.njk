@@ -13,7 +13,7 @@
 
         {% if assessments %}
 
-            {{ assessmenttable(assessments, member, false, true) }}   {# call my nunjunks macro #}
+            {{ assessmenttable(assessments, member, False, False, True) }}   {# call my nunjunks macro #}
 
         {%  else %}
             {{  'No assessments found.' }}

@@ -52,13 +52,18 @@ const dashboard = {
       },
 
     deleteassessment: function (request, response) {
-        const member = userStorApi.findById(request.params.memberid);
         const assessmentid = request.params.assessmentid;
         const assessment = assessmentStorApi.findById(assessmentid);
-        if (assessmentStorApi.remove(assessmentid)) {
-          console.log('Assessement removed');
-          response.redirect('/dashboard');
+        if (assessment) {
+          console.log('assessment ', assessment);
+
+          if (assessmentStorApi.remove(assessmentid)) {
+            console.log('Assessement removed');
+
+          }
         }
+
+        response.redirect('/dashboard');
       },
 
     assessed: function (request, response) {

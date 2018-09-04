@@ -26,7 +26,6 @@ const userStorApi = {
       const user = this.findById(id);
       this.store.remove(this.collection, user);
       this.store.save();
-
     },
 
     update(user) {
