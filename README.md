@@ -8,4 +8,3 @@ Gym application written in JavaScript, templates in NunJunks, and deployed on No
 * ExpressJS: http://expressjs.com/
 * Semantic-ui: https://semantic-ui.com/
 
-Demo: https://nodejs-nunjunks-gymapp.herokuapp.com/
