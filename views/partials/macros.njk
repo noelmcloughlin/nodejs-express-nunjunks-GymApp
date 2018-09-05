@@ -145,7 +145,7 @@
 {% macro analytics(member, memberStats) %}
     {% if member %}
         <section class="ui segment">
-            <div class="ui four small statistics">
+            <div class="ui five small statistics">
                 <div class="ui statistic">
                     <div class="value">
                         <i class="user icon"></i>
@@ -178,6 +178,17 @@
                         {{ memberStats.bmiCategory }}
                     </div>
                 </div>
+            <div class="ui statistic">
+              {% if memberStats.goaltrend %}
+                <i class="green bullseye icon"></i>
+              {%- else %}
+                <i class="red bullseye icon"></i>
+              {%- endif %}
+            <div class="label">
+                Goals Indicator
+            </div>
+        </div>
+
             </div>
         </section>
     {% endif %}

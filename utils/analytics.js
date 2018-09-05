@@ -35,6 +35,8 @@ const analytics = {
         } else {
           idealBodyWeight = 45.5 + ((inches - fiveFeet) * 2.3);
         }
+
+        console.log(idealBodyWeight, member.gender, inches);
       }
 
       return ((idealBodyWeight <= (weight + 2.0)) && (idealBodyWeight >= (weight - 2.0))
