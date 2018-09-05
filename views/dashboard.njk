@@ -1,6 +1,6 @@
 {% include "layouts/main.html" %}
 
-{% from "partials/macros.njk" import assessmenttable, assessmentrow, analytics with context %}
+{% from "partials/macros.njk" import assessmenttable, assessmentrow, analytics, goaltable, goalrow with context %}
 
 <div class="ui container">
     <div class="ui inverted vertical masthead center aligned segment">
@@ -13,24 +13,40 @@
                 {# See: https://css-tricks.com/killer-features-of-nunjucks/ #}
 
                 {% if user.role == 'member' %}    {### MEMBER #}
-
                     {{ analytics(user, memberStats) }} {# nunjunks macro #}
 
-                    {% include "partials/addassessment.njk" %}
+                    <div class="ui stacked segment">
+                        <h2 class="ui block inverted header">
+                            <img src="/images/goal_banner.png">Goals
+                        </h2>
 
-                        {% if assessmentList %}
-                    {{ assessmenttable(assessmentList, user, False, True, False) }}   {# nunjunks macro #}
+                        {% include "partials/addgoal.njk" %}
+
+                        {% if goalsList %}
+                            {{ goaltable(goalsList, user, true, true) }}   {# nunjunks macro #}
                         {%  else %}
-                    {{  'No assessments found.' }}
+                            {{  'No goals found.' }}
                         {% endif %}
+                    </div>
+                    <div class="ui stacked segment">
+                        <h2 class="ui block inverted header">
+                            <img src="/images/assessment_banner.png" class="ui huge image">Assessments
+                        </h2>
+                        {% include "partials/addassessment.njk" %}
 
+                            {% if assessmentList %}
+                        {{ assessmenttable(assessmentList, user, true, false) }}   {# nunjunks macro #}
+                            {%  else %}
+                        {{  'No assessments found.' }}
+                            {% endif %}
+                    </div>
                 {% elif user.role == 'trainer' %}                  {### TRAINER ###}
 
                     <div class="ui relaxed divided list">
 
                         {%- for member in users %}
-
                             {% if member.role == 'member' %}
+
                             <div class="item">
                                 <i class="large github middle aligned icon"></i>
                                 <div class="content">
@@ -40,7 +56,16 @@
                                             <i class="ui large red icon trash"></i>
                                         </a>
                                     </div>
-                                    <div class="description"> {{ assessmentList.size() if assessmentList else '0' }} assessments </div>
+
+                                    {# <div class="description"> {{ {{ assessmentList|length }} assessments </div> #}
+                                        {# this is failed hack for `assessmentList|length` rendering blank #}
+                                    {% set counter = ['0'] %}
+                                    {% for item in assessmentList %}
+                                        {% if counter.append['1'] %}{% endif %}
+                                    {% endfor  %}
+                                    <div class="description"> {{ counter|length - 1 }} assessments </div>
+                                        {# end failed hack #}
+
                                 </div>
                             </div>
                             {% endif %}
@@ -56,3 +81,8 @@
         </section>
     </div>
 </div>
+<script>
+    $('#yearfirst').calendar({
+        startMode: 'year'
+    });
+</script>

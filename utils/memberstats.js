@@ -3,6 +3,7 @@ const memberstats = {
     bmiCategory: '',
     isIdealBodyweight: true,
     trend: 0,
+    goalstrend: 0,
   };
 
 module.exports = memberstats;

@@ -23,13 +23,17 @@ router.get('/settings', accounts.settings);
 router.post('/settings', accounts.updateSettings);
 router.get('/dashboard', dashboard.index);
 
-//Member Dashboard
+//Dashboard
 router.post('/dashboard/addassessment', dashboard.addassessment);
 router.get('/dashboard/:memberid/deleteassessment/:assessmentid', dashboard.deleteassessment);
-
-//Trainer Dashboard
 router.get('/dashboard/deletemember/:memberid', dashboard.deletemember);
 router.get('/assessed/:memberid', dashboard.assessed);
 router.post('/editcomment/:assessmentid', dashboard.editcomment);
+
+
+//Goals
+router.post('/dashboard/addgoal', dashboard.addgoal);
+router.get('/dashboard/:memberid/deletegoal/:goalid', dashboard.deletegoal);
+router.post('/editgoal/:goalid', dashboard.editcriteria );
 
 module.exports = router;

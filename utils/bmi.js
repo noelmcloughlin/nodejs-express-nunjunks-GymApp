@@ -15,6 +15,7 @@
  */
 
 const bmi = {
+
     bmiScale: Object.freeze({
         VERY_SEVERELY_UNDERWEIGHT: '15.0',
         SEVERELY_UNDERWEIGHT: '16.0',

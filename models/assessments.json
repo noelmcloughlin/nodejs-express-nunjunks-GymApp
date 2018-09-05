@@ -1,15 +1,43 @@
 {
   "assessmentCollection": [
     {
-      "weight": "22",
-      "chest": "22",
-      "thigh": "22",
-      "upperarm": "22",
-      "waist": "22",
-      "hips": "22",
-      "id": "1b4eee2c-8f3c-4765-a02a-ae6debb841df",
-      "comment": "  ssss",
-      "memberid": "14c5f480-7816-4d30-ac99-3ae0aaa4f100"
+      "weight": "123.0",
+      "chest": "45.0",
+      "thigh": "12.5",
+      "upperarm": "23.3",
+      "waist": "32",
+      "hips": "38",
+      "trend": true,
+      "date": "2017-03-10 08:31:00",
+      "id": "5f24cf0f-625b-4795-9e6d-fe1d8d6a6b41",
+      "comment": "",
+      "memberid": "193f6b14-2840-4f24-8e78-951d5725ffd2"
+    },
+    {
+      "weight": "123.0",
+      "chest": "45.0",
+      "thigh": "12.0",
+      "upperarm": "23.3",
+      "waist": "31",
+      "hips": "36",
+      "trend": true,
+      "date": "2017-03-19 08:31:00",
+      "id": "5f24cf0f-625b-4795-9e6d-fe1d8d6a6b42",
+      "comment": "  ss",
+      "memberid": "193f6b14-2840-4f24-8e78-951d5725ffd2"
+    },
+    {
+      "weight": "122",
+      "chest": "44",
+      "thigh": "12",
+      "upperarm": "23.3",
+      "waist": "31",
+      "hips": "36",
+      "id": "77a7c0fe-9e2b-49a8-b7bc-8df8de0356f4",
+      "date": "2018-09-05 01:19:58",
+      "comment": "",
+      "memberid": "193f6b14-2840-4f24-8e78-951d5725ffd2",
+      "trend": false
     }
   ]
 }

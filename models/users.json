@@ -1,17 +1,6 @@
 {
   "users": [
     {
-      "name": "Mark",
-      "address": "New York",
-      "email": "mark@gmail.com",
-      "password": "secret",
-      "height": "2.0",
-      "startingweight": "22",
-      "gender": "M",
-      "role": "member",
-      "id": "8b3fa5a7-3dfa-46b5-a0b8-8a5ebb8faf38"
-    },
-    {
       "email": "marge@simpson.com",
       "password": "secret",
       "name": "Marge Simpson",
@@ -20,37 +9,15 @@
       "id": "6a09adc2-8d92-41b4-acf2-28e7702d7ea"
     },
     {
-      "name": "Frank",
-      "address": "Russia",
-      "gender": "F",
-      "email": "frank@example.com",
+      "name": "Bart Simpson",
+      "address": "Sprintfield",
+      "gender": "M",
+      "email": "bart@simpson.com",
       "password": "secret",
-      "height": "2.0",
-      "startingweight": "276",
-      "role": "trainer",
-      "id": "8518829a-38d1-4cc0-9eef-921bd9cf2135"
-    },
-    {
-      "name": "Lulu",
-      "address": "San Francisco",
-      "gender": "F",
-      "email": "lulu@example.com",
-      "password": "secret",
-      "height": "1.8",
-      "startingweight": "28",
+      "height": "1.2",
+      "startingweight": "67",
       "role": "member",
-      "id": "14c5f480-7816-4d30-ac99-3ae0aaa4f100"
-    },
-    {
-      "name": "Katie",
-      "address": "Katie Road",
-      "gender": "F",
-      "email": "katie@example.com",
-      "password": "secret",
-      "height": "2.0",
-      "startingweight": "25",
-      "role": "member",
-      "id": "f54976ea-f3a2-4fe5-8f16-ee8f6ebac558"
+      "id": "193f6b14-2840-4f24-8e78-951d5725ffd2"
     }
   ]
 }

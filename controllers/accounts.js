@@ -3,7 +3,6 @@
 const logger = require('../utils/logger');
 const members = require('../models/users');
 
-const assessmentStorApi = require('../models/assessments');
 const userStorApi = require('../models/users');
 const uuid = require('uuid');
 

@@ -1,0 +1,101 @@
+<form class="ui segment form" action="/dashboard/addgoal" method="POST">
+    <div class="two fields">
+        <div class="field">
+            <label>Goal Description</label>
+            <input placeholder="goal description" type="text" name="target">
+            <div class="ui pointing label">Enter goal description </div>
+        </div>
+        <div class="field">
+            <label>Success criteria</label>
+            <input placeholder="goal description" type="text" name="criteria">
+            <div class="ui pointing label">Describe goal success criteria </div>
+        </div>
+    </div>
+    <div class="two fields">
+        <div class="field">
+            <label>Due date</label>
+            <div class="ui calendar" id="duedate">
+                <div class="ui calendar" id="yearfirst">
+                    <div class="ui input left icon">
+                        <i class="calendar icon"></i>
+                        <input type="text" name="duedate" placeholder="Due date">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <label>Goal status</label>
+            <div class="ui fluid selection dropdown">
+                <input type="hidden" name="status">
+                <i class="dropdown icon"></i>
+                <div class="default text"> open </div>
+                <div class="menu">
+                    <div class="item" data-value="open">
+                        <img class="ui mini avatar image" src="/images/tick_open.png">
+                        open
+                    </div>
+                    <div class="item" data-value="success">
+                        <img class="ui mini avatar image" src="/images/tick_yes.png">
+                        completed
+                    </div>
+                    <div class="item" data-value="failed">
+                        <img class="ui mini avatar image" src="/images/tick_failed.png">
+                        failed
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="ui blue submit button"> Add Goal for {{ user.name }}</button>
+</form>
+<script>
+    $('#yearfirst').calendar({
+        startMode: 'year'
+    });
+
+    $('.ui.dropdown')
+        .dropdown();
+
+    $('.ui.form')
+        .form({
+            fields: {
+                weight: {
+                    identifier: 'goal',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Enter your goal'
+                        }
+                    ]
+                },
+                chest: {
+                    identifier: 'criteria',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Enter goal success criteria.'
+                        }
+                    ]
+                },
+                duedate: {
+                    identifier: 'duedate',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Choose (future) due date'
+                        }
+                    ]
+                },
+                status: {
+                    identifier: 'status',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Choose Status (open, complete, failed)'
+                        }
+                    ]
+                },
+            },
+        })
+    ;
+</script>

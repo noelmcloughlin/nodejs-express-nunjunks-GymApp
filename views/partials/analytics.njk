@@ -36,5 +36,15 @@
                 {{ memberStats.bmiCategory }}
             </div>
         </div>
+        <div class="value">
+            {% if memberStats.goaltrend %}
+                <i class="green bullseye icon"></i>
+            {%- else %}
+                <i class="red bullseye icon"></i>
+            {%- endif %}
+        </div>
+        <div class="label">
+            Goals Indicator
+        </div>
     </div>
 </section>
