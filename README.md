@@ -11,3 +11,9 @@ Gym application written in JavaScript, NunJunks templating engine, and deployed 
 
 Ported from Java/Playframework: https://github.com/noelmcloughlin/playframework_GymApp
 
+Release Notes:
+* https://github.com/noelmcloughlin/nodejs-nunjunks-GymApp/releases/tag/v0.01
+
+Heroku:
+* demo url: https://nodejs-nunjunks-gymapp.herokuapp.com/ 
+* demo users: marge@simpson.com/secret, bart@simpson.com/secret).
