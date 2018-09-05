@@ -32,7 +32,7 @@ const dashboard = {
             user: user,
             assessmentList: assessmentList.reverse(),
             goalsList: goalsList.reverse(),
-            memberStats: analyticsApi.generateMemberStats(user, goalsApi.findByMemberId(user.id, assessmentStorApi.findByMemberId(user.id))),
+            memberStats: analyticsApi.generateMemberStats(user, goalsApi.findByMemberId(user.id), assessmentStorApi.findByMemberId(user.id)),
           };
 
           response.render('dashboard', viewData);
