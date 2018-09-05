@@ -38,6 +38,19 @@
       "comment": "",
       "memberid": "193f6b14-2840-4f24-8e78-951d5725ffd2",
       "trend": false
+    },
+    {
+      "weight": "123",
+      "chest": "44",
+      "thigh": "12.5",
+      "upperarm": "20",
+      "waist": "31.1",
+      "hips": "36.0",
+      "id": "4fa8269b-7f5c-4969-a9bd-d1ca21a76651",
+      "date": "2018-09-05 08:53:29",
+      "comment": "",
+      "memberid": "193f6b14-2840-4f24-8e78-951d5725ffd2",
+      "trend": false
     }
   ]
 }

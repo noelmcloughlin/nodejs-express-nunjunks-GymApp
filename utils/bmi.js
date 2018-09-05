@@ -28,21 +28,21 @@ const bmi = {
 
     bmiCategory(bmiValue)
     {
-      if (bmiValue < Number(bmi.VERY_SEVERELY_UNDERWEIGHT))
+      if (bmiValue < Number(bmi.bmiScale.VERY_SEVERELY_UNDERWEIGHT))
           return 'Very Severely Underweight';
-      else if (bmiValue < Number(bmi.SEVERELY_UNDERWEIGHT))
+      else if (bmiValue < Number(bmi.bmiScale.SEVERELY_UNDERWEIGHT))
           return 'Severely Underweight';
-      else if (bmiValue < Number(bmi.UNDERWEIGHT))
+      else if (bmiValue < Number(bmi.bmiScale.UNDERWEIGHT))
           return 'Underweight';
-      else if (bmiValue < Number(bmi.NORMAL))
+      else if (bmiValue < Number(bmi.bmiScale.NORMAL))
           return 'Normal';
-      else if (bmiValue < Number(bmi.OVERWEIGHT))
+      else if (bmiValue < Number(bmi.bmiScale.OVERWEIGHT))
           return 'Overweight';
-      else if (bmiValue < Number(bmi.MODERATELY_OBESE))
+      else if (bmiValue < Number(bmi.bmiScale.MODERATELY_OBESE))
           return 'Moderately Obese';
-      else if (bmiValue < Number(bmi.SEVERELY_OBESE))
+      else if (bmiValue < Number(bmi.bmiScale.SEVERELY_OBESE))
           return 'Severely Obese';
-      else if (bmiValue < Number(bmi.VERY_SEVERELY_OBESE))
+      else if (bmiValue < Number(bmi.bmiScale.VERY_SEVERELY_OBESE))
           return 'Very Severely Obese';
     },
 

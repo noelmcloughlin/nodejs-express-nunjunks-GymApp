@@ -3,17 +3,13 @@
 
 const conversion = {
 
-    round(numberToConvert, precision) {
-      const p = Math.pow(10, precision);
-      return Math.round(numberToConvert * p) / p;
-    },
-
-    convertKGtoPounds(numberToConvert, precision) {
-      return this.round(numberToConvert * 2.2, precision);
+    rounded(numberToConvert, precision) {
+      let p = Math.pow(10, precision);
+      return Math.round(numberToConvert * p / p);
     },
 
     convertMetresToInches(numberToConvert, precision) {
-      return this.round(numberToConvert * 39.37, precision);
+      return this.rounded(numberToConvert * 39.37, precision);
     },
   };
 

@@ -9,12 +9,13 @@ const analytics = {
     calculateBMI(member, weight) {
       if (Number(member.height) <= 0)
           return 0;
-      else
-          return conversion.round((Number(weight) / Math.pow(Number(member.height), 2), 2));
+      else {
+        return conversion.rounded((weight / (member.height * member.height)), 2);
+      }
     },
 
     determineBMICategory(bmiValue) {
-      return bmi.bmiScale.bmiValue;
+      return bmi.bmiCategory(bmiValue);
     },
 
     isIdealBodyWeight(member, weight)
@@ -35,29 +36,31 @@ const analytics = {
         } else {
           idealBodyWeight = 45.5 + ((inches - fiveFeet) * 2.3);
         }
-
-        console.log(idealBodyWeight, member.gender, inches);
       }
 
       return ((idealBodyWeight <= (weight + 2.0)) && (idealBodyWeight >= (weight - 2.0))
       );
     },
 
-    generateMemberStats(member, assessments) {
+    generateMemberStats(member, goals, assessments) {
       let weight = Number(member.startingweight);
       let num = assessments.length;
       if (num > 0) {
         const assessment = assessments[num - 1];    // get latest assessment
-        weight = Number(assessment.weight);
-
-        stats.bmi = this.calculateBMI(member, weight);
-        stats.bmiCategory = this.determineBMICategory(stats.bmi);
+        stats.bmi = this.calculateBMI(member, Number(assessment.weight));
+        stats.bmiCategory = this.determineBMICategory(Number(stats.bmi));
         stats.isIdealBodyweight = this.isIdealBodyWeight(member, weight);
         stats.trend = true;
         if (num > 1) {
           stats.trend = assessments[num - 2].weight > assessments[num - 1].weight;
         }
 
+        stats.goaltrend = true;
+      };
+
+      num = goals.length;
+      if (num > 0) {
+        const goal = goals[num - 1];    // get latest goal
         stats.goaltrend = true;
       };
 

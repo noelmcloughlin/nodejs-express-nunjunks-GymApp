@@ -26,12 +26,12 @@ const dashboard = {
 
         } else if (user.role == 'member') {
           const assessmentList = assessmentStorApi.findByMemberId(user.id);
-          const goalsList = goalsApi.findByMemberId(user.id);
+          const goalList = goalsApi.findByMemberId(user.id);
 
           const viewData = {
             user: user,
             assessmentList: assessmentList.reverse(),
-            goalsList: goalsList.reverse(),
+            goalList: goalList.reverse(),
             memberStats: analyticsApi.generateMemberStats(user, goalsApi.findByMemberId(user.id), assessmentStorApi.findByMemberId(user.id)),
           };
 
@@ -99,8 +99,8 @@ const dashboard = {
         const memberStats = analyticsApi.generateMemberStats(member, goalsApi.findByMemberId(member.id), assessmentStorApi.findByMemberId(member.id));
         const viewData = {
             member: member,
-            assessments: assessmentStorApi.findByMemberId(member.id).reverse(),
-            goals: goalsApi.findByMemberId(member.id).reverse(),
+            assessmentList: assessmentStorApi.findByMemberId(member.id).reverse(),
+            goalList: goalsApi.findByMemberId(member.id).reverse(),
             memberStats: memberStats,
           };
         response.render('assessed', viewData);

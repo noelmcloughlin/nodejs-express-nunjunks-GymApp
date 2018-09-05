@@ -22,24 +22,32 @@
 
                         {% include "partials/addgoal.njk" %}
 
-                        {% if goalsList %}
-                            {{ goaltable(goalsList, user, true, true) }}   {# nunjunks macro #}
+                        {% if goalList %}
+                            {{ goaltable(goalList, user, true, true) }}   {# nunjunks macro #}
+
                         {%  else %}
                             {{  'No goals found.' }}
+
                         {% endif %}
+
                     </div>
                     <div class="ui stacked segment">
                         <h2 class="ui block inverted header">
                             <img src="/images/assessment_banner.png" class="ui huge image">Assessments
                         </h2>
+
                         {% include "partials/addassessment.njk" %}
 
                             {% if assessmentList %}
                         {{ assessmenttable(assessmentList, user, true, false) }}   {# nunjunks macro #}
+
                             {%  else %}
                         {{  'No assessments found.' }}
+
                             {% endif %}
+
                     </div>
+
                 {% elif user.role == 'trainer' %}                  {### TRAINER ###}
 
                     <div class="ui relaxed divided list">
@@ -56,25 +64,20 @@
                                             <i class="ui large red icon trash"></i>
                                         </a>
                                     </div>
+                                     <div class="description"> {{ assessmentList|length }} assessments </div>
 
-                                    {# <div class="description"> {{ {{ assessmentList|length }} assessments </div> #}
-                                        {# this is failed hack for `assessmentList|length` rendering blank #}
-                                    {% set counter = ['0'] %}
-                                    {% for item in assessmentList %}
-                                        {% if counter.append['1'] %}{% endif %}
-                                    {% endfor  %}
-                                    <div class="description"> {{ counter|length - 1 }} assessments </div>
-                                        {# end failed hack #}
 
                                 </div>
                             </div>
-                            {% endif %}
 
+                            {% endif %}
                         {%- endfor %}
+
                     </div>
 
                 {% else %}
                     {{  'No records found.' }}
+
                 {% endif %}
 
             </div>
